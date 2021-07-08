@@ -9,20 +9,32 @@ import Foundation
 import UIKit
 
 protocol BuilderProtocol {
-    static func createMainView() -> UIViewController
+    func createMainModule(router: RouterProtocol) -> UIViewController
+    func createDetailModule(beer: BeerWithImage, router: RouterProtocol) -> UIViewController
 }
 
 class Builder: BuilderProtocol {
-    static func createMainView() -> UIViewController {
+    
+    func createMainModule(router: RouterProtocol) -> UIViewController {
         let networkService = NetworkService()
         let view = MainView()
         let tableView = BeersTableView()
         let presenter = MainPresenter(view: view,
                                       network: networkService,
-                                      tableView: tableView)
+                                      tableView: tableView,
+                                      router: router)
         view.presenter = presenter
         view.table = tableView
         tableView.presenter = presenter
+        return view
+    }
+    
+    func createDetailModule(beer: BeerWithImage, router: RouterProtocol) -> UIViewController {
+        let view = DetailView()
+        let presenter = DetailPresenter(view: view,
+                                        beer: beer,
+                                        router: router)
+        view.presenter = presenter
         return view
     }
 }

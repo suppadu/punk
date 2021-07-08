@@ -10,15 +10,17 @@ import UIKit
 class BeersTableView: UITableView {
     
     let cellId = "BeerTableViewCell"
-    var presenter: MainPresenterProtocol!
+    var presenter: MainPresenter!
     var podgruzkaPoshla = false
-    var pivasik: [BeerWithImage] = []
+    let refreshController = UIRefreshControl()
     
     init() {
         super.init(frame: .zero, style: .plain)
+        self.refreshController.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         backgroundColor = .clear
         delegate = self
         dataSource = self
+        refreshControl = self.refreshController
         rowHeight = 220
         register(BeerTableViewCell.self, forCellReuseIdentifier: self.cellId)
     }
@@ -30,7 +32,8 @@ class BeersTableView: UITableView {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        if offsetY > contentHeight - scrollView.frame.height - 150 {
+//        print("\(offsetY) | \(contentHeight) | \(scrollView.frame.height)")
+        if offsetY > contentHeight / 4 {
             if !self.podgruzkaPoshla {
                 podgruzkaPoshla = true
                 print("Gruzim novoe")
@@ -39,24 +42,30 @@ class BeersTableView: UITableView {
         }
     }
     
-    
+    @objc
+    private func refresh(sender: UIRefreshControl){
+        self.presenter.getNewPageBeers()
+    }
 }
 
 extension BeersTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pivasik.count
+        return self.presenter.pivasik.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! BeerTableViewCell
-        cell.title.text = self.pivasik[indexPath.row].name
-        cell.img.image = self.pivasik[indexPath.row].img
+        cell.title.text = self.presenter.pivasik[indexPath.row].name
+        cell.img.image = self.presenter.pivasik[indexPath.row].img
         
         return cell
     }
 }
 
 extension BeersTableView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let beer = self.presenter.pivasik[indexPath.row]
+        self.presenter.tapBeer(beer: beer)
+    }
 }

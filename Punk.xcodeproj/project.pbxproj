@@ -18,6 +18,9 @@
 		28394D822695CCBB004B4CE2 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28394D812695CCBB004B4CE2 /* Beer.swift */; };
 		28CA290B2695DAB4000F5D79 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CA290A2695DAB4000F5D79 /* MainPresenter.swift */; };
 		28CA290F26962ABF000F5D79 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CA290E26962ABF000F5D79 /* Builder.swift */; };
+		28CA29112697636B000F5D79 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CA29102697636B000F5D79 /* Router.swift */; };
+		28CA29172697686C000F5D79 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CA29162697686C000F5D79 /* DetailView.swift */; };
+		28CA291A26976AC7000F5D79 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CA291926976AC7000F5D79 /* DetailPresenter.swift */; };
 		841405F2B5B8D5C717CAD69C /* Pods_Punk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 355BFE24959F9A37CB6B90FB /* Pods_Punk.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,9 @@
 		28394D812695CCBB004B4CE2 /* Beer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		28CA290A2695DAB4000F5D79 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		28CA290E26962ABF000F5D79 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		28CA29102697636B000F5D79 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		28CA29162697686C000F5D79 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		28CA291926976AC7000F5D79 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		355BFE24959F9A37CB6B90FB /* Pods_Punk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90A073E292072528DE837FD /* Pods-Punk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punk.release.xcconfig"; path = "Target Support Files/Pods-Punk/Pods-Punk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +82,7 @@
 				28394D782694B0CE004B4CE2 /* SupportFiles */,
 				28394D762694B0A7004B4CE2 /* MainModule */,
 				28394D6B2694AACC004B4CE2 /* Assets.xcassets */,
+				28CA291226976711000F5D79 /* DetailModule */,
 				28394D6D2694AACC004B4CE2 /* LaunchScreen.storyboard */,
 				28394D702694AACC004B4CE2 /* Info.plist */,
 				28394D7F2695CC0B004B4CE2 /* ServiceLayer */,
@@ -109,6 +116,7 @@
 				28394D622694AABB004B4CE2 /* AppDelegate.swift */,
 				28394D642694AABB004B4CE2 /* SceneDelegate.swift */,
 				28CA290E26962ABF000F5D79 /* Builder.swift */,
+				28CA29102697636B000F5D79 /* Router.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -133,6 +141,31 @@
 			isa = PBXGroup;
 			children = (
 				28CA290A2695DAB4000F5D79 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		28CA291226976711000F5D79 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				28CA291826976AB6000F5D79 /* Presenter */,
+				28CA29132697671D000F5D79 /* View */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		28CA29132697671D000F5D79 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28CA29162697686C000F5D79 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28CA291826976AB6000F5D79 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				28CA291926976AC7000F5D79 /* DetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -269,13 +302,16 @@
 			files = (
 				28394D672694AABB004B4CE2 /* MainView.swift in Sources */,
 				28394D7E2695CBD6004B4CE2 /* NetworkService.swift in Sources */,
+				28CA29112697636B000F5D79 /* Router.swift in Sources */,
 				28394D632694AABB004B4CE2 /* AppDelegate.swift in Sources */,
 				28CA290B2695DAB4000F5D79 /* MainPresenter.swift in Sources */,
+				28CA29172697686C000F5D79 /* DetailView.swift in Sources */,
 				28394D652694AABB004B4CE2 /* SceneDelegate.swift in Sources */,
 				28394D7A2694B260004B4CE2 /* BeersTableView.swift in Sources */,
 				28394D822695CCBB004B4CE2 /* Beer.swift in Sources */,
 				28394D7C269590D7004B4CE2 /* BeerTableViewCell.swift in Sources */,
 				28CA290F26962ABF000F5D79 /* Builder.swift in Sources */,
+				28CA291A26976AC7000F5D79 /* DetailPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

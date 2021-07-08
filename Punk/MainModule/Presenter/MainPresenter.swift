@@ -14,24 +14,31 @@ protocol MainViewProtocol {
 protocol MainPresenterProtocol {
     init(view: MainView,
          network: NetworkService,
-         tableView: BeersTableView)
+         tableView: BeersTableView,
+         router: RouterProtocol)
     
     func getBeers()
     func getNewPageBeers()
+    func tapBeer(beer: BeerWithImage)
 }
 
 class MainPresenter: MainPresenterProtocol {
     
-    
     let view: MainView
     let network: NetworkService
     let tableView: BeersTableView
+    let router: RouterProtocol
     private var numberPage = 0
+    var pivasik: [BeerWithImage] = []
     
-    required init(view: MainView, network: NetworkService, tableView: BeersTableView) {
+    required init(view: MainView,
+                  network: NetworkService,
+                  tableView: BeersTableView,
+                  router: RouterProtocol) {
         self.view = view
         self.network = network
         self.tableView = tableView
+        self.router = router
     }
     
     func getBeers() {
@@ -39,7 +46,7 @@ class MainPresenter: MainPresenterProtocol {
         self.numberPage = self.numberPage < 66 ? self.numberPage + 1 : self.numberPage - 65
         getBeerQueue.async {
             self.network.getBeersPage(self.numberPage){ beers in
-                self.tableView.pivasik.append(contentsOf: beers)
+                self.pivasik.append(contentsOf: beers)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.tableView.podgruzkaPoshla = false
@@ -56,13 +63,17 @@ class MainPresenter: MainPresenterProtocol {
         } else {self.numberPage = Int.random(in: 1...65)}
         getBeerQueue.async {
             self.network.getBeersPage(self.numberPage){ beers in
-                self.tableView.pivasik = []
-                self.tableView.pivasik.append(contentsOf: beers)
+                self.pivasik = []
+                self.pivasik.append(contentsOf: beers)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.tableView.refreshControl?.endRefreshing()
                 }
             }
         }
+    }
+    
+    func tapBeer(beer: BeerWithImage) {
+        self.router.showDetail(beer: beer)
     }
 }
