@@ -16,7 +16,7 @@ class BeersTableView: UITableView {
     var divideNumber: CGFloat = 6
     
     init() {
-        super.init(frame: .zero, style: .plain)
+        super.init(frame: .zero, style: .grouped)
         self.refreshController.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         backgroundColor = .systemBackground
         delegate = self
