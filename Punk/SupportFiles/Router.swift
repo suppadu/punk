@@ -32,6 +32,7 @@ class Router: RouterProtocol {
         if let navController = self.navController{
             guard let mainViewController = self.builder?.createMainModule(router: self) else { return }
             navController.viewControllers = [mainViewController]
+            navController.navigationBar.backgroundColor = .blue
         }
     }
     
@@ -39,6 +40,7 @@ class Router: RouterProtocol {
         if let navController = self.navController{
             guard let detailViewController = self.builder?.createDetailModule(beer: beer, router: self) else { return }
             navController.pushViewController(detailViewController, animated: true)
+            navController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
     }
 }

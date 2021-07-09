@@ -16,7 +16,7 @@ class MainView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         self.view.addSubview(table)
         table.snp.makeConstraints { make in
             make.top.bottom.right.left.equalToSuperview()

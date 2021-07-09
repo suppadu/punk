@@ -13,11 +13,12 @@ class BeersTableView: UITableView {
     var presenter: MainPresenter!
     var podgruzkaPoshla = false
     let refreshController = UIRefreshControl()
+    var divideNumber: CGFloat = 6
     
     init() {
         super.init(frame: .zero, style: .plain)
         self.refreshController.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        backgroundColor = .clear
+        backgroundColor = .systemBackground
         delegate = self
         dataSource = self
         refreshControl = self.refreshController
@@ -33,10 +34,11 @@ class BeersTableView: UITableView {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
 //        print("\(offsetY) | \(contentHeight) | \(scrollView.frame.height)")
-        if offsetY > contentHeight / 4 {
+        if offsetY > contentHeight / self.divideNumber {
             if !self.podgruzkaPoshla {
                 podgruzkaPoshla = true
-                print("Gruzim novoe")
+                divideNumber = 2
+//                print("Gruzim novoe | \(divideNumber)")
                 self.presenter.getBeers()
             }
         }

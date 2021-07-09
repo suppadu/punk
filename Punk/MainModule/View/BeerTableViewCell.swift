@@ -18,22 +18,9 @@ class BeerTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
-        self.img.backgroundColor = .lightGray
-        self.img.contentMode = .scaleAspectFit
-        self.title.backgroundColor = .gray
-        contentView.addSubview(self.img)
-        contentView.addSubview(self.title)
-        self.img.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(10)
-            make.width.equalTo(self.constantWidth)
-            make.height.equalTo(self.constantHeight)
-        }
-        self.title.snp.makeConstraints { make in
-            make.left.equalTo(self.img.snp.right).offset(10)
-            make.top.equalToSuperview().offset(10)
-            make.right.equalToSuperview()
-            make.height.equalTo(self.constantHeight)
-        }
+        contentView.backgroundColor = .systemBackground
+        self.setImgView()
+        self.setTitleLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -51,4 +38,32 @@ class BeerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+extension BeerTableViewCell {
+    
+    private func setImgView() {
+        self.img.backgroundColor = .white
+        self.img.contentMode = .scaleAspectFit
+        contentView.addSubview(self.img)
+        self.img.snp.makeConstraints { make in
+            make.left.top.equalToSuperview().offset(10)
+            make.width.equalTo(self.constantWidth)
+            make.height.equalTo(self.constantHeight)
+        }
+    }
+    
+    private func setTitleLabel() {
+//        self.title.backgroundColor = .clear
+        self.title.numberOfLines = 3
+        self.title.font = UIFont(name: "Zapfino", size: 15)
+        self.title.textColor = .label
+        contentView.addSubview(self.title)
+        self.title.snp.makeConstraints { make in
+            make.left.equalTo(self.img.snp.right).offset(10)
+            make.top.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.height.equalTo(self.constantHeight)
+        }
+    }
 }

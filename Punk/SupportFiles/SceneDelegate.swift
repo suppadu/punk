@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let builder = Builder()
         let router = Router(navController: navCon, builder: builder)
         router.initViewController()
-        navCon.navigationBar.prefersLargeTitles = true
         navCon.navigationBar.topItem?.title = "ya punk"
         window.rootViewController = navCon
         self.window = window

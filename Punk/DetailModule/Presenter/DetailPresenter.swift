@@ -31,14 +31,15 @@ class DetailPresenter: DetailPresenterProtocol {
     }
     
     func setImg() {
-        
+        self.view.img.image = self.beer.img
     }
     
     func setName() {
+        self.view.name.text = self.beer.name
         
     }
     
     func setDescription() {
-        
+        self.view.descriptionBeer.text = self.beer.description
     }
 }
