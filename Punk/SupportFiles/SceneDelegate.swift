@@ -14,11 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let rootView = MainViewController()
-        let navBar = UINavigationController(rootViewController: rootView)
-        navBar.navigationBar.prefersLargeTitles = true
-        navBar.navigationBar.topItem?.title = "ya punk"
-        window.rootViewController = navBar
+        let navCon = UINavigationController()
+        let builder = Builder()
+        let router = Router(navController: navCon, builder: builder)
+        router.initViewController()
+        navCon.navigationBar.topItem?.title = "ya punk"
+        window.rootViewController = navCon
         self.window = window
         window.makeKeyAndVisible()
     }

@@ -6,9 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 struct Beer: Codable {
     let name: String
     let description: String
-    let image_url: String
+    let image_url: String?
+}
+
+struct BeerWithImage {
+    let name: String
+    let description: String
+    let img: UIImage?
 }
