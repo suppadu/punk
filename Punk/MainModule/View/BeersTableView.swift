@@ -47,6 +47,7 @@ class BeersTableView: UITableView {
     @objc
     private func refresh(sender: UIRefreshControl){
         self.presenter.getNewPageBeers()
+        self.divideNumber = 6
     }
 }
 
